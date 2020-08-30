@@ -8,3 +8,15 @@ before_install:
 
 script:
     - docker run -e CI=true npulimood/docker-react npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-west-1"
+    app: "docker-tutorial"
+    env: "DockerTutorial-env"
+    bucket_name: "elasticbeanstalk-us-west-1-501425025256"
+    bucket_path: "docker-tutorial"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
